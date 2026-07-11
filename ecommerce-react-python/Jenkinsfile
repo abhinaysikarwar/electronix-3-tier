@@ -1,5 +1,5 @@
 pipeline{
-    agent { 'electronix'}
+    agent { label 'electronix'}
     
     stages("Electronix Setup"){
         steps {echo "Hello from Electronix"}

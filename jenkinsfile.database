@@ -1,0 +1,21 @@
+pipeline{
+    agent {label 'electronix'}
+
+    stages{
+        stage('Creating Database')
+        steps{
+            sh 'python3 scripts/cteate-db.py'
+        }
+    }
+
+
+    post{
+        success{
+            echo 'Datavase Creation Successfull ✅'
+        }
+
+        failure{
+            echo 'Databse Failed ❌'
+        }
+    }
+}

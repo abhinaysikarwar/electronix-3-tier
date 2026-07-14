@@ -1,39 +1,29 @@
-pipeline {
-    agent { label 'electronix' }
+pipeline{
+    agent {label 'electronix'}
 
-    stages {
-        stage('Creating Database') {
-            steps {
-                sh 'python3 scripts/create_db.py'
-            }
+    stages{
+        stage('Creating Database'){
+            steps{
+            sh 'python3 scripts/create_db.py'
+        }
         }
 
-        stage('smoke test') {
-            steps {
-                sh 'python3 scripts/create_db.py'
-            }
+        stage('Smoke Test'){
+            steps{
+            sh 'python3 scripts/smoke_test.py'
         }
-    }
-
+        }
         
-
-    post {
-        success {
-            echo 'Database Creation Successfull ✅'
-        }
-
-        failure {
-            echo 'Databse Failed ❌'
-        }
     }
 
-    post {
-        success {
+    post{
+        success{
             echo 'Database Creation and Smoke Test Successfull ✅'
         }
 
         failure {
-            echo 'Smoke Test Failed ❌'
+           echo 'Database and Smoke Test Failed ❌'
         }
     }
+    
 }

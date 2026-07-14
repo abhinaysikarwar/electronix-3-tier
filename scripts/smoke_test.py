@@ -18,7 +18,7 @@ def test_database():
     connection.close()
     print("[PASS] ✅ Database Connectivity Check")
 
-if name=="main":
+if __name__=="__main__":
     try:
         test_database()
         print ("Smoke Test Passed.. ✅")

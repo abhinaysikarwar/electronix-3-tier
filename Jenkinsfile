@@ -60,11 +60,11 @@ pipeline {
 
     Post{
         success{
-            'Frontend Deoloyment Successful✅'
+            echo 'Frontend Deoloyment Successful✅'
         }
 
         Faliuer{
-            'frontend Deployment Failed❌'
+            echo 'frontend Deployment Failed❌'
         }
     }
 }

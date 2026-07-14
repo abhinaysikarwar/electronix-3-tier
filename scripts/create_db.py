@@ -1,27 +1,33 @@
 import pymysql
-import os 
+import os
 from dotenv import load_dotenv
 
 load_dotenv('/home/jenkins/.env')
 
+
 def create_database():
-    connection=pymysql.connect(
+    connection = pymysql.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
-        port=int(os.getenv("DB_PORT",3306))
+        port=int(os.getenv("DB_PORT", 3306))
     )
 
     try:
-        with connecion.cursor()as cursor:
-            cursor.execute(f"CREATE DATABASEIF NOT EXISTS {os.getenv("DB_NAME")};")
+        with connection.cursor() as cursor:
+            cursor.execute(
+                f"CREATE DATABASE IF NOT EXISTS `{os.getenv('DB_NAME')}`;"
+            )
             connection.commit()
-            print(F"Database : {os.getenv("DB_NAME")}is create or exists ✅")
+            print(f"Database: {os.getenv('DB_NAME')} is created or already exists ✅")
+
     except Exception as e:
-        print("Error :",e)
+        print("Error:", e)
+        raise
 
     finally:
         connection.close()
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     create_database()

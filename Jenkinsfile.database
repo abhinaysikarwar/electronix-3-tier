@@ -7,15 +7,33 @@ pipeline {
                 sh 'python3 scripts/create_db.py'
             }
         }
+
+        stage('smoke test') {
+            steps {
+                sh 'python3 scripts/create_db.py'
+            }
+        }
     }
+
+        
 
     post {
         success {
-            echo 'Datavase Creation Successfull ✅'
+            echo 'Database Creation Successfull ✅'
         }
 
         failure {
             echo 'Databse Failed ❌'
+        }
+    }
+
+    post {
+        success {
+            echo 'Database Creation and Smoke Test Successfull ✅'
+        }
+
+        failure {
+            echo 'Smoke Test Failed ❌'
         }
     }
 }
